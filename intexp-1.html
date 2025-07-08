@@ -8,45 +8,81 @@
     body {
       margin: 0;
       padding: 0;
-      background: #fff0f5;
       font-family: 'Comic Sans MS', cursive;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      background: url('cute-birthday-kitten-background-free-vector.jpg') no-repeat center center fixed;
+      background-size: cover;
       height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      position: relative;
     }
 
-    h1 {
-      color: #ff69b4;
-      text-align: center;
-      font-size: 2.2rem;
-      margin: 20px;
-    }
-
-    .kitty {
-      width: 200px;
-      margin-bottom: 20px;
-    }
-
-    .button {
-      background-color: #ff69b4;
-      color: white;
+    .enter-btn {
+      margin-top: 20px;
       padding: 14px 28px;
+      font-size: 1.2rem;
       border: none;
       border-radius: 30px;
-      font-size: 1.1rem;
+      background-color: #ff69b4;
+      color: white;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
       cursor: pointer;
+      opacity: 0;
+      animation: fadeIn 4s ease-in-out forwards 4s;
+      z-index: 10;
     }
 
-    .button:hover {
-      background-color: #ff85c1;
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    .heart {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background-image: url('https://cdn-icons-png.flaticon.com/512/833/833472.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      opacity: 0.8;
+      animation: fallDown linear infinite;
+    }
+
+    @keyframes fallDown {
+      0% {
+        transform: translateY(-40px);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.5;
+      }
+      100% {
+        transform: translateY(110vh);
+        opacity: 0;
+      }
     }
   </style>
 </head>
 <body>
-  <img src="https://media.tenor.com/BzGi9eF7INoAAAAi/hello-kitty-kawaii.gif" alt="Hello Kitty" class="kitty">
-  <h1>🎉 Happy Birthday, My Love! 🎉</h1>
-  <button class="button" onclick="location.href='page2.html'">💖 Tap to Enter My Heart 💖</button>
+
+  <!-- Button -->
+  <button class="enter-btn" onclick="location.href='page2.html'">💖 Tap to Enter My Heart 💖</button>
+
+  <!-- Hearts generator -->
+  <script>
+    for (let i = 0; i < 40; i++) {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (Math.random() * 5 + 6) + 's';
+      heart.style.animationDelay = Math.random() * 5 + 's';
+      document.body.appendChild(heart);
+    }
+  </script>
+
 </body>
 </html>
